@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\InvitationContent;
 use App\Models\InvitationCategory;
 use App\Models\Theme;
@@ -13,6 +14,26 @@ use App\Models\Theme;
 class Invitation extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'event_date',
+        'publish_status',
+        'created_by',
+        'invitation_category_id',
+        'theme_id',
+        'slug',
+        'content_category',
+        'music_feature',
+        'music_url'
+    ];
+
     /**
      * Get the contents for the invitation.
      */

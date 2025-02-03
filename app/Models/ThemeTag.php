@@ -5,12 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Theme;
 
 class ThemeTag extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'tag_name',
+        'tag_description',
+    ];
     
     /**
      * Get the theme associated with the tags
